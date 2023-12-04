@@ -1,7 +1,6 @@
 package edu.byuh.cis.cs203.preferences.theme;
 
 import android.graphics.Color;
-import edu.byuh.cis.cs203.preferences.theme.Theme;
 
 public class PopTheme implements Theme {
     @Override
@@ -48,25 +47,5 @@ public class PopTheme implements Theme {
     @Override
     public int getDarkChipPicture() {
         return 0;
-    }
-
-    /**
-     * This method returns the name of the light team
-     *
-     * @return the name of the light team
-     */
-    @Override
-    public String getLightTeamName() {
-        return "pink";
-    }
-
-    /**
-     * This method returns the name of the dark team
-     *
-     * @return the name of the dark team
-     */
-    @Override
-    public String getDarkTeamName() {
-        return "Blue";
     }
 }

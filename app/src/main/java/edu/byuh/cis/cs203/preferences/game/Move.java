@@ -1,4 +1,6 @@
-package edu.byuh.cis.cs203.preferences;
+package edu.byuh.cis.cs203.preferences.game;
+
+import edu.byuh.cis.cs203.preferences.game.Cell;
 
 public class Move {
     Cell source; // from

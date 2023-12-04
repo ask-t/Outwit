@@ -1,4 +1,4 @@
-package edu.byuh.cis.cs203.preferences;
+package edu.byuh.cis.cs203.preferences.game;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -11,12 +11,17 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
+import edu.byuh.cis.cs203.preferences.activitiy.Prefs;
+import edu.byuh.cis.cs203.preferences.R;
 import edu.byuh.cis.cs203.preferences.theme.*;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import java.util.function.Consumer;
+
+
 
 public class GameView extends View {
 
@@ -115,12 +120,22 @@ public class GameView extends View {
      */
     public GameView(Context c) {
         super(c);
-        theme = switch(Prefs.getThemePref(c)) {
-            case "classic" -> new ClassicTheme();
-            case "pop" -> new PopTheme();
-            case "ice" -> new Theme3();
-            case "bit" -> new ThemeBit();
-            default -> new ClassicTheme();
+         switch(Prefs.getThemePref(c)) {
+            case "classic" -> { theme = new ClassicTheme();
+                lightTeamName = getResources().getString(R.string.theme_classic_light);
+                darkTeamName =getResources().getString(R.string.theme_classic_dark);}
+            case "pop" -> { theme = new PopTheme();
+                lightTeamName = getResources().getString(R.string.theme_pop_light);
+                darkTeamName =getResources().getString(R.string.theme_pop_dark);}
+            case "ice" -> {theme = new Theme3();
+                lightTeamName = getResources().getString(R.string.theme_ice_light);
+                darkTeamName =getResources().getString(R.string.theme_ice_dark);}
+            case "bit" -> { theme = new ThemeBit();
+                lightTeamName = getResources().getString(R.string.theme_magic_light);
+                darkTeamName =getResources().getString(R.string.theme_magic_dark);}
+            default -> {theme = new ClassicTheme();
+                lightTeamName = getResources().getString(R.string.theme_classic_light);
+                darkTeamName =getResources().getString(R.string.theme_classic_dark);}
         };
         switch(Prefs.getModePref(c)){
             case "human" ->{
@@ -136,8 +151,8 @@ public class GameView extends View {
             }
 
         }
-        lightTeamName = theme.getLightTeamName();
-        darkTeamName = theme.getDarkTeamName();
+//        lightTeamName = theme.getLightTeamName();
+//        darkTeamName = theme.getDarkTeamName();
         lightCell = new Paint();
         lightCell.setColor(theme.getLigthCell());
         lightCell.setStyle(Paint.Style.FILL);
@@ -168,9 +183,9 @@ public class GameView extends View {
 
 
         dialog = new AlertDialog.Builder(c)
-                .setTitle("Game Over")
-                .setPositiveButton("PLAY AGAIN?", (DialogInterface di, int i) -> initialized = false )
-                .setNegativeButton("QUIT", (DialogInterface di, int i) -> System.exit(0)).create();
+                .setTitle(R.string.alter_title)
+                .setPositiveButton(R.string.alter_positive, (DialogInterface di, int i) -> initialized = false )
+                .setNegativeButton(R.string.alter_negative, (DialogInterface di, int i) -> System.exit(0)).create();
         effect1 = MediaPlayer.create(c, R.raw.effect1);
         isEffectOn = Prefs.getSoundEffectPref(c);
         isAnimeOn = Prefs.getAnimationPref(c);
@@ -297,11 +312,11 @@ public class GameView extends View {
 
 
         if(currentPlayer%2 == 0){
-            c.drawText(darkTeamName+" 's Turn", cellSize*3, cellSize*10.5f, text);
+            c.drawText(darkTeamName+" "+getResources().getString(R.string.turn_message), cellSize*3, cellSize*10.5f, text);
 
         }
         else{
-            c.drawText(lightTeamName+" 's Turn", cellSize*3, cellSize*10.5f, text);
+            c.drawText(lightTeamName+" "+getResources().getString(R.string.turn_message), cellSize*3, cellSize*10.5f, text);
         }
 
         if(isAIOn){
@@ -343,7 +358,12 @@ public class GameView extends View {
                     selected = null;
                     currentPlayer ++; // Move to next player
                     if(isAIOn){
-                        aiPlay();
+                        if(aiTeam == Team.DARK && currentPlayer %2 == 0){
+                            aiPlay();
+                        }
+                        else if(aiTeam == Team.LIGHT && currentPlayer %2 == 1){
+                            aiPlay();
+                        }
                     }
                     break;
                 }
@@ -387,8 +407,13 @@ public class GameView extends View {
                     return true;
                 }
                 else {
-                    undoLastMove();
-                    currentPlayer--;
+                    if(!undoStack.isEmpty()){
+                        undoLastMove();
+                        currentPlayer--;
+                    }
+                    else{
+                        Toast.makeText(getContext(), getResources().getString(R.string.undo_empty), Toast.LENGTH_SHORT).show();
+                    }
                 }
                 return true;
             }
@@ -398,8 +423,12 @@ public class GameView extends View {
         return true;
     }
 
+
+    /**
+     * This method is for the AI to play
+     * @return void
+     */
     private void aiPlay() {
-        // Find all chips that can move
         legalMoves.clear();
         List<Chip> movableChips = new ArrayList<>();
         for (Chip chip : chipz) {
@@ -409,126 +438,70 @@ public class GameView extends View {
             }
         }
 
-        try{
-            if(!movableChips.isEmpty()){
-                boolean isMoved = false;
-                for(Chip chip : movableChips){
-                    findPossibleMoves(chip.getHostCell());
-                    if(!legalMoves.isEmpty()){
-                        for(Cell cell : legalMoves){
-                            if(aiTeam == Team.LIGHT){
-                                if(5 < cell.x() && 3 < cell.y()){
-                                    selected = chip;
-                                    selected.setDestination(cell, animeSpeed);
-                                    Move move = new Move(selected.getHostCell(), cell); // Assuming tappedCell is the cell the user tapped on.
-                                    undoStack.push(move);
-                                    selected = null;
-                                    currentPlayer ++; // Move to next player
-                                    isMoved = true;
-                                    if (isEffectOn){
-                                        effect1.start();
-                                    }
-                                    invalidate();
-                                    return;
-                                }
-                            else break;
-                            }
-                            else if (aiTeam == Team.DARK){
-                                if(cell.x() < 3 && 6 < cell.y()){
-                                    selected = chip;
-                                    selected.setDestination(cell, animeSpeed);
-                                    Move move = new Move(selected.getHostCell(), cell); // Assuming tappedCell is the cell the user tapped on.
-                                    undoStack.push(move);
-                                    selected = null;
-                                    isMoved = true;
-                                    currentPlayer ++; // Move to next player
-                                    if (isEffectOn){
-                                        effect1.start();
-                                    }
-                                    invalidate();
-                                    return;
-                                }
-                            else break;
-                            }
-                        }
+        if (!movableChips.isEmpty()) {
+            boolean isMoved = false;
+            for (Chip chip : movableChips) {
+                selected = chip; // Select the chip to find its legal moves
+                findPossibleMoves(chip.getHostCell()); // Find legal moves for the selected chip
+                for (Cell cell : legalMoves) {
+                    if (isBetterMove(cell) && !chip.isHome()) {
+                        makeMove(chip, cell);
+                        isMoved = true;
+                        break; // Break out of the loop once a move is made
                     }
                 }
-                if(!isMoved){
-                    int randomChipIndex = (int) (Math.random() * movableChips.size());
-                    Chip chipToMove = movableChips.get(randomChipIndex);
-
-                    // Find possible moves for the selected chip
-                    selected = chipToMove;
-                    findPossibleMoves(null);
-
-                    // Randomly select a move to make
-                    if (!legalMoves.isEmpty()) {
-                        int randomMoveIndex = (int) (Math.random() * legalMoves.size());
-                        Cell destination = legalMoves.get(randomMoveIndex);
-
-                        // Move the selected chip to the destination
-                        selected.setDestination(destination, animeSpeed);
-                        Move move = new Move(selected.getHostCell(), destination);
-                        undoStack.push(move);
-
-                        // Play sound effect
-                        if (isEffectOn) {
-                            effect1.start();
-                        }
-
-                        // Update the game state
-                        selected = null;
-                        currentPlayer++; // Switch to the next player
-                        legalMoves.clear(); // Clear the legal moves for the next turn
-
-                    }
+                if (isMoved) {
+                    legalMoves.clear();
+                    break; // Break out of the loop if a move has been made
                 }
-                // Redraw the game view
-                invalidate();
             }
-        }
-        catch(Exception e){
-//             Randomly select one of the movable chips
-            if (!movableChips.isEmpty()) {
-                int randomChipIndex = (int) (Math.random() * movableChips.size());
-                Chip chipToMove = movableChips.get(randomChipIndex);
 
-                // Find possible moves for the selected chip
+            // If no "better" move is found, make a random move
+            if (!isMoved) {
+                Chip chipToMove = movableChips.get((int) (Math.random() * movableChips.size()));
                 selected = chipToMove;
-                findPossibleMoves(null);
-
-                // Randomly select a move to make
+                findPossibleMoves(chipToMove.getHostCell());
                 if (!legalMoves.isEmpty()) {
-                    int randomMoveIndex = (int) (Math.random() * legalMoves.size());
-                    Cell destination = legalMoves.get(randomMoveIndex);
-
-                    // Move the selected chip to the destination
-                    selected.setDestination(destination, animeSpeed);
-                    Move move = new Move(selected.getHostCell(), destination);
-                    undoStack.push(move);
-
-                    // Play sound effect
-                    if (isEffectOn) {
-                        effect1.start();
-                    }
-
-                    // Update the game state
-                    selected = null;
-                    currentPlayer++; // Switch to the next player
-                    legalMoves.clear(); // Clear the legal moves for the next turn
-
-                    // Redraw the game view
-                    invalidate();
+                    Cell destination = legalMoves.get((int) (Math.random() * legalMoves.size()));
+                    makeMove(chipToMove, destination);
+                    legalMoves.clear();
                 }
             }
-
-            Log.d("Error","Error Error " , null);
         }
+    }
 
+    /**
+     * move the chip method
+     * @return void
+     */
+    private void makeMove(Chip chip, Cell destination) {
+        chip.setDestination(destination, animeSpeed);
+        Move move = new Move(chip.getHostCell(), destination);
+        undoStack.push(move);
+        if (isEffectOn) {
+            effect1.start();
+        }
+        selected = null;
+        currentPlayer++; // Move to next player
+        invalidate();
+    }
 
-
-
-
+    /**
+     * Check if the regal position is belong better way.
+     * @return boolean
+     */
+    private boolean isBetterMove(Cell cell) {
+        if(aiTeam == Team.LIGHT){
+            if(5 < cell.x() && 3 < cell.y()){
+                return true;
+            }
+        }
+        else if (aiTeam == Team.DARK){
+            if(cell.x() < 3 && 6 < cell.y()){
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -722,7 +695,7 @@ public class GameView extends View {
 
         // Check if undo stack is empty
         if (undoStack.empty()) {
-            Toast.makeText(getContext(), "No moves to undo!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.undo_empty, Toast.LENGTH_SHORT).show();
 
             return;
         }
@@ -764,13 +737,13 @@ public class GameView extends View {
         }
         if(darkCount == 9){ // if all the dark chips are in the dark brown corner
             Log.d("winner", "Dark Brown Wins!");
-            dialog.setMessage("Dark Brown Wins!");
+            dialog.setMessage(darkTeamName+" "+getResources().getString(R.string.win_message));
             dialog.show();
             isGameOver = true; // game is over
         }
         else if(lightCount == 9){ //if all the light chips are in the light brown corner
             Log.d("winner", "Light Brown Wins!");
-            dialog.setMessage("Light Brown Wins!");
+            dialog.setMessage(lightTeamName+" "+getResources().getString(R.string.win_message));
             dialog.show();
             isGameOver = true;
 

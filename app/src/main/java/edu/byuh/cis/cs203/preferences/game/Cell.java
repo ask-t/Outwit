@@ -1,4 +1,4 @@
-package edu.byuh.cis.cs203.preferences;
+package edu.byuh.cis.cs203.preferences.game;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

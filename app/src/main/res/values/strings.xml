@@ -15,4 +15,73 @@
     <string name="attachment_title">Download incoming attachments</string>
     <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+
+    <!--    Prefs-->
+    <string name = "music_pref_title">Play background music</string>
+    <string name = "music_pref_summary_on">Music will play</string>
+    <string name = "music_pref_summary_off">Music will NOT play</string>
+
+    <string name="sound_pref_title">Play sound effect</string>
+    <string name="sound_pref_summary_on">Sound will play</string>
+    <string name="sound_pref_summary_off">Sound will NOT play</string>
+
+    <string name="anime_pref_title">Play animation</string>
+    <string name="anime_pref_summary_on">Animation will play</string>
+    <string name="anime_pref_summary_off">Animation will NOT play</string>
+
+    <string name="mode_pref_title">Mode</string>
+    <string name="mode_pref_Summary">Choose the mode</string>
+
+    <string name="first_pref_title">First Player</string>
+    <string name="first_pref_summary">Choose the first player</string>
+
+
+    <string name="speed_pref_title">Animation Speed</string>
+    <string name="speed_pref_summary">Choose the animation speed</string>
+
+
+    <string name="theme_pref_title">Theme Color</string>
+    <string name="theme_pref_summary">Choose the theme color</string>
+
+    <string name="about">Outwit is a strategy game played on a grid. Each player has an equal number of pieces, with the goal to trap the opponent\'s pieces. \n\n
+        Rules:\n
+        - Two players take turns to move.\n
+        - Each piece can move in straight lines until blocked.\n
+        - Win by trapping the opponent\'s pieces.\n\n
+        Strategy:\n
+        - Anticipate moves and control the board\'s center.\n
+        - Sometimes, sacrifice a piece to gain an advantage.\n\n
+        The game is won when a player can no longer make a move, or it can end in a draw if all pieces are blocked.\n\n
+        Publisher: Parker Brothers in 1978\n </string>
+
+    <string name="alert_title">Leaving so soon?</string>
+    <string name="alert_message">Do you REALLY want to quit? I mean, really?</string>
+    <string name="alert_yes">Yes, I\'m done.</string>
+    <string name="alert_no">No, I want to stay!</string>
+    <string name="alter.title">Game Over</string>
+    <string name="alter.positive">PLAY AGAIN?</string>
+    <string name="alter.negative">QUIT</string>
+
+<!--    theme-->
+
+    <string name="theme_classic_light">Light Brown</string>
+    <string name="theme_classic_dark">Dark Brown</string>
+    <string name="theme_pop_light">pink</string>
+    <string name="theme_pop_dark">Blue</string>
+    <string name="theme_ice_light">Light ice</string>
+    <string name="theme_ice_dark">Dark ice</string>
+    <string name="theme_magic_light">White Magician</string>
+    <string name="theme_magic_dark">Black Magician</string>
+
+<!--GameView    -->
+    <string name="undo_empty">No moves to undo!</string>
+    <string name="win_message">win!</string>
+    <string name="turn_message">\'s turn</string>
+
+
+
+
+
+
 </resources>

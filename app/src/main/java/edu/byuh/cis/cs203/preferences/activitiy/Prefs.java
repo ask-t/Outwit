@@ -1,4 +1,4 @@
-package edu.byuh.cis.cs203.preferences;
+package edu.byuh.cis.cs203.preferences.activitiy;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.*;
+import edu.byuh.cis.cs203.preferences.R;
 
 
 /**
@@ -26,11 +27,11 @@ public class Prefs extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_activity);
+        setContentView(edu.byuh.cis.cs203.preferences.R.layout.settings_activity);
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.settings, new SettingsFragment())
+                    .replace(edu.byuh.cis.cs203.preferences.R.id.settings, new SettingsFragment())
                     .commit();
         }
         ActionBar actionBar = getSupportActionBar();
@@ -165,93 +166,91 @@ public class Prefs extends AppCompatActivity {
 
             // For background music. Play or not play
             SwitchPreference music = new SwitchPreference(context);
-            music.setTitle("Play background music");
-            music.setSummaryOn("Music will play");
-            music.setSummaryOff("Music will not play");
+            music.setTitle(getString(edu.byuh.cis.cs203.preferences.R.string.music_pref_title));
+            music.setSummaryOn(getString(edu.byuh.cis.cs203.preferences.R.string.music_pref_summary_on));
+            music.setSummaryOff(getString(edu.byuh.cis.cs203.preferences.R.string.music_pref_summary_off));
             music.setKey("MUSIC_PREFERENCE_OPTION");
             music.setDefaultValue(false);
             screen.addPreference(music);
 
             // For effect sound. Play or not play
             SwitchPreference soundEffect = new SwitchPreference(context);
-            soundEffect.setTitle("Play sound effect");
-            soundEffect.setSummaryOn("Sound effect will play");
-            soundEffect.setSummaryOff("Sound effect will not play");
+            soundEffect.setTitle(getString((edu.byuh.cis.cs203.preferences.R.string.sound_pref_title)));
+            soundEffect.setSummaryOn(getString(edu.byuh.cis.cs203.preferences.R.string.sound_pref_summary_on));
+            soundEffect.setSummaryOff(getString(edu.byuh.cis.cs203.preferences.R.string.sound_pref_summary_off));
             soundEffect.setKey("SOUND_EFFECT_PREFERENCE_OPTION");
             soundEffect.setDefaultValue(false);
             screen.addPreference(soundEffect);
 
             // For animation. Play or not play
             SwitchPreference Animation = new SwitchPreference(context);
-            Animation.setTitle("Play animation");
-            Animation.setSummaryOn("Animation will play");
-            Animation.setSummaryOff("Animation will not play");
+            Animation.setTitle(getString(edu.byuh.cis.cs203.preferences.R.string.anime_pref_title));
+            Animation.setSummaryOn(getString(edu.byuh.cis.cs203.preferences.R.string.anime_pref_summary_on));
+            Animation.setSummaryOff(getString(edu.byuh.cis.cs203.preferences.R.string.anime_pref_summary_off));
             Animation.setKey("ANIMATION_PREFERENCE_OPTION");
             Animation.setDefaultValue(false);
             screen.addPreference(Animation);
 
             // For timer. Play or not play. Not used in this version
-            SwitchPreference timer = new SwitchPreference(context);
-            timer.setTitle("Play timer");
-            timer.setSummaryOn("Timer will play");
-            timer.setSummaryOff("Timer will not play");
-            timer.setKey("TIMER_PREFERENCE_OPTION");
-            timer.setDefaultValue(false);
+//            SwitchPreference timer = new SwitchPreference(context);
+//            timer.setTitle("Play timer");
+//            timer.setSummaryOn("Timer will play");
+//            timer.setSummaryOff("Timer will not play");
+//            timer.setKey("TIMER_PREFERENCE_OPTION");
+//            timer.setDefaultValue(false);
 //            screen.addPreference(timer);
 
             // Mode
             ListPreference mode = new ListPreference(context);
-            mode.setTitle("Mode");
-            mode.setSummary("Choose the mode");
+            mode.setTitle(getString(edu.byuh.cis.cs203.preferences.R.string.mode_pref_title));
+            mode.setSummary(getString(edu.byuh.cis.cs203.preferences.R.string.mode_pref_Summary));
             mode.setKey("MODE_OPTION");
-            mode.setEntries(new String[]{"Two human players", "Human (dark) vs AI (light)","Human (light) vs AI (dark)"});
-            mode.setEntryValues(new String[]{"human", "darkAI","lightAI"});
+            mode.setEntries(edu.byuh.cis.cs203.preferences.R.array.mode_pref_setEntities);
+            mode.setEntryValues(edu.byuh.cis.cs203.preferences.R.array.mode_pref_setEntryValues);
             mode.setDefaultValue("human");
             screen.addPreference(mode);
 
             // For the first player. Dark or light or random
             ListPreference firstPlayer = new ListPreference(context);
-            firstPlayer.setTitle("First Player");
-            firstPlayer.setSummary("Choose the first player");
+            firstPlayer.setTitle(getString(edu.byuh.cis.cs203.preferences.R.string.first_pref_title));
+            firstPlayer.setSummary(getString(edu.byuh.cis.cs203.preferences.R.string.first_pref_summary));
             firstPlayer.setKey("FIRST_PLAYER_OPTION");
-            firstPlayer.setEntries(new String[]{"dark", "light","random"});
-            firstPlayer.setEntryValues(new String[]{"dark", "light","random"});
+            firstPlayer.setEntries(edu.byuh.cis.cs203.preferences.R.array.first_pref_setEntities);
+            firstPlayer.setEntryValues(edu.byuh.cis.cs203.preferences.R.array.first_pref_setEntities);
             firstPlayer.setDefaultValue("random");
             screen.addPreference(firstPlayer);
 
             // For the animation speed. Slow, medium or fast
             ListPreference animationSpeed = new ListPreference(context);
-            animationSpeed.setTitle("Animation Speed");
-            animationSpeed.setSummary("Choose the animation speed");
+            animationSpeed.setTitle(getString(edu.byuh.cis.cs203.preferences.R.string.speed_pref_title));
+            animationSpeed.setSummary(getString(edu.byuh.cis.cs203.preferences.R.string.speed_pref_summary));
             animationSpeed.setKey("ANIMATION_SPEED_OPTION");
-            animationSpeed.setEntries(new String[]{"slow", "medium","fast"});
-            animationSpeed.setEntryValues(new String[]{"0.2", "0.333","0.8"});
+            animationSpeed.setEntries(edu.byuh.cis.cs203.preferences.R.array.speed_pref_setEntities);
+            animationSpeed.setEntryValues(edu.byuh.cis.cs203.preferences.R.array.speed_pref_setEntryValues);
             animationSpeed.setDefaultValue("medium");
             screen.addPreference(animationSpeed);
 
             // for the theme color. Classic or pop
             ListPreference themeColor = new ListPreference(context);
-            themeColor.setTitle("Theme Color");
-            themeColor.setSummary("Choose the Theme color");
+            themeColor.setTitle(edu.byuh.cis.cs203.preferences.R.string.theme_pref_title);
+            themeColor.setSummary(edu.byuh.cis.cs203.preferences.R.string.theme_pref_summary);
             themeColor.setKey("THEME_OPTION");
-            themeColor.setEntries(new String[]{"classic", "pop","ice","Magic"});
-            themeColor.setEntryValues(new String[]{"classic", "pop","ice","bit"});
+            themeColor.setEntries(edu.byuh.cis.cs203.preferences.R.array.theme_pref_setEntities);
+            themeColor.setEntryValues(R.array.theme_pref_setEntryValues);
             themeColor.setDefaultValue("classic");
             screen.addPreference(themeColor);
 
             // For the layout. Classic or modern. Not used in this version
-            ListPreference layout = new ListPreference(context);
-            layout.setTitle("Layout");
-            layout.setSummary("Choose the layout");
-            layout.setKey("LAYOUT_OPTION");
-            layout.setEntries(new String[]{"classic", "modern"});
-            layout.setEntryValues(new String[]{"classic", "modern"});
-            layout.setDefaultValue("classic");
+//            ListPreference layout = new ListPcreference(context);
+//            layout.setTitle("Layout");
+//            layout.setSummary("Choose the layout");
+//            layout.setKey("LAYOUT_OPTION");
+//            layout.setEntries(new String[]{"classic", "modern"});
+//            layout.setEntryValues(new String[]{"classic", "modern"});
+//            layout.setDefaultValue("classic");
 //            screen.addPreference(layout);
 
             setPreferenceScreen(screen);
-
-
 
 
         }

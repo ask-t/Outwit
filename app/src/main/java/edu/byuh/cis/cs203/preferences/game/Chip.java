@@ -1,8 +1,7 @@
-package edu.byuh.cis.cs203.preferences;
+package edu.byuh.cis.cs203.preferences.game;
 
 import android.content.res.Resources;
 import android.graphics.*;
-
 
 
 public class Chip {

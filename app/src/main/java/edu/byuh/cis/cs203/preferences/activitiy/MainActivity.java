@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import edu.byuh.cis.cs203.preferences.GameView;
-import edu.byuh.cis.cs203.preferences.Prefs;
+import edu.byuh.cis.cs203.preferences.game.GameView;
 import edu.byuh.cis.cs203.preferences.R;
 
 public class MainActivity extends Activity {
@@ -69,10 +68,10 @@ public class MainActivity extends Activity {
     @Override
     public void onBackPressed(){
         AlertDialog.Builder ab = new AlertDialog.Builder(this);
-        ab.setTitle("Leaving so soon?")
-                .setMessage("Do you REALLY want to quit? I mean, really?")
-                .setPositiveButton("Yes, I'm done.", (p1,p2) -> finish())
-                .setNegativeButton("No, I want to stay!", null)
+        ab.setTitle(getString(R.string.alert_title))
+                .setMessage(getString(R.string.alert_message))
+                .setPositiveButton(getString(R.string.alert_yes), (p1,p2) -> finish())
+                .setNegativeButton(getString(R.string.alert_no), null)
                 .setCancelable(true)
                 .show();
     }

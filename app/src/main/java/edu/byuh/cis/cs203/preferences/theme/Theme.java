@@ -1,8 +1,5 @@
 package edu.byuh.cis.cs203.preferences.theme;
 
-import android.graphics.Paint;
-import android.media.MediaPlayer;
-
 public interface Theme {
 
     /**
@@ -47,17 +44,19 @@ public interface Theme {
      */
     int getDarkChipPicture();
 
-    /**
-     * This method returns the name of the light team
-     * @return  the name of the light team
-     */
-    String getLightTeamName();
-
-    /**
-     * This method returns the name of the dark team
-     * @return  the name of the dark team
-     */
-    String getDarkTeamName();
+//    /**
+//     * This method returns the name of the light team
+//     *
+//     * @return the name of the light team
+//     */
+//    int getLightTeamName();
+//
+//    /**
+//     * This method returns the name of the dark team
+//     *
+//     * @return the name of the dark team
+//     */
+//    int getDarkTeamName();
 
 
 

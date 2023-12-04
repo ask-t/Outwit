@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.ImageView;
-import edu.byuh.cis.cs203.preferences.Prefs;
 import edu.byuh.cis.cs203.preferences.R;
-import edu.byuh.cis.cs203.preferences.activitiy.MainActivity;
 
 public class SplashScreen extends Activity {
     private ImageView title;
@@ -96,16 +94,7 @@ public class SplashScreen extends Activity {
     private void showAboutDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("About")
-                .setMessage("Outwit is a strategy game played on a grid. Each player has an equal number of pieces, with the goal to trap the opponent's pieces. \n\n" +
-                            "Rules:\n" +
-                            "- Two players take turns to move.\n" +
-                            "- Each piece can move in straight lines until blocked.\n" +
-                            "- Win by trapping the opponent's pieces.\n\n" +
-                            "Strategy:\n" +
-                            "- Anticipate moves and control the board's center.\n" +
-                            "- Sometimes, sacrifice a piece to gain an advantage.\n\n" +
-                            "The game is won when a player can no longer make a move, or it can end in a draw if all pieces are blocked.\n\n"+
-                            "Publisher: Parker Brothers in 1978\n" )
+                .setMessage(getString(R.string.about))
                 .setNeutralButton(android.R.string.ok, null)
                 .show();
     }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">設定</string>
+    <string name="title_activity_settings">設定</string>
+    <string name="messages_header">メッセージ</string>
+    <string name="sync_header">同期</string>
+    <string name="signature_title">署名</string>
+    <string name="reply_title">デフォルト</string>
+    <string name="sync_title">メール同期</string>
+    <string name="attachment_title">ダウンロードコンテンツ</string>
+    <string name="attachment_summary_on">自動ダウンロード</string>
+    <string name="attachment_summary_off">あ</string>
+    <string name="music_pref_title">BGM再生</string>
+    <string name="music_pref_summary_on">BGMオン</string>
+    <string name="music_pref_summary_off">BGMオフ</string>
+    <string name="sound_pref_title">サウンドエフェクト</string>
+    <string name="sound_pref_summary_on">オン</string>
+    <string name="sound_pref_summary_off">オフ</string>
+    <string name="anime_pref_title">アニメーション</string>
+    <string name="anime_pref_summary_on">アニメーションあり</string>
+    <string name="anime_pref_summary_off">アニメーションなし</string>
+    <string name="mode_pref_title">モード</string>
+    <string name="mode_pref_Summary">モード選択</string>
+    <string name="first_pref_title">先攻後攻</string>
+    <string name="first_pref_summary">先攻を選んでください</string>
+    <string name="speed_pref_title">アニメーションスピード</string>
+    <string name="speed_pref_summary">アニメスピード選択</string>
+    <string name="theme_pref_title">テーマカラー</string>
+    <string name="theme_pref_summary">テーマ選択</string>
+    <string name="about">Outwitはグリッド上でプレイする戦略ゲームです。各プレイヤーは同数の駒を持ち、相手の駒を罠にかけることを目的とする。\n\n
+        ルール \n
+        2人のプレイヤーが交互に駒を動かします。\n
+        各駒はブロックされるまで一直線に動くことができます。\n
+        相手の駒を引っかけて勝つ。\n
+        戦略\n
+        駒の動きを予測し、盤面の中央を制圧する。\n
+        駒を犠牲にして有利になることもあります。\n
+        プレイヤーが手を打てなくなったときがゲームの勝ちで、すべての駒がブロックされた場合は引き分けになることもあります.\n
+        出版社 Parker Brothers in 1978\n"</string>
+    <string name="alert_title">ゲーム終了</string>
+    <string name="alert_message">このままゲームを終了しますか？</string>
+    <string name="alert_yes">はい</string>
+    <string name="alert_no">続ける</string>
+    <string name="alter.title">ゲームオーバー</string>
+    <string name="alter.positive">もう一回やりますか？</string>
+    <string name="alter.negative">やめる</string>
+    <string name="theme_classic_light">茶色</string>
+    <string name="theme_classic_dark">焦茶</string>
+    <string name="theme_pop_light">ピンク</string>
+    <string name="theme_pop_dark">青</string>
+    <string name="theme_ice_light">水色</string>
+    <string name="theme_ice_dark">瑠璃色</string>
+    <string name="theme_magic_light">ホワイトマジシャン</string>
+    <string name="theme_magic_dark">ブラックマジシャン</string>
+    <string name="undo_empty">これ以上戻せません</string>
+    <string name="win_message">の勝利です！</string>
+    <string name="turn_message">のターンです</string>
+</resources>

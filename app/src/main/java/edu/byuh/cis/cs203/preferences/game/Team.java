@@ -1,4 +1,4 @@
-package edu.byuh.cis.cs203.preferences;
+package edu.byuh.cis.cs203.preferences.game;
 
 /**
  * The Team class is just a repository for the three constants dark, light, and neutral.

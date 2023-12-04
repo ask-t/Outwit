@@ -11,9 +11,9 @@
     </string-array>
 
     <string-array name="mode_pref_setEntities">
-        <item>Two human players</item>
-        <item>Human (dark) vs AI (light)</item>
-        <item>Human (light) vs AI (dark)</item>
+        <item>2人対戦</item>
+        <item>Human (ダーク) vs AI (ライト)</item>
+        <item>Human (ライト) vs AI (ダーク)</item>
     </string-array>
 
     // "human", "darkAI","lightAI"
@@ -24,9 +24,9 @@
     </string-array>
 
     <string-array name="first_pref_setEntities">
-        <item>Dark</item>
-        <item>Light</item>
-        <item>Random</item>
+        <item>ダーク</item>
+        <item>ライト</item>
+        <item>ランダム</item>
     </string-array>
 
     <string-array name="first_pref_setEntryValues">
@@ -36,9 +36,9 @@
     </string-array>
 
     <string-array name="speed_pref_setEntities">
-        <item>Slow</item>
-        <item>Normal</item>
-        <item>Fast</item>
+        <item>遅い</item>
+        <item>普通</item>
+        <item>早い</item>
     </string-array>
     <string-array name="speed_pref_setEntryValues">
         <item>0.2</item>
@@ -47,10 +47,10 @@
     </string-array>
 
     <string-array name="theme_pref_setEntities">
-        <item>Classic</item>
-        <item>Pop</item>
-        <item>Ice</item>
-        <item>Magic</item>
+        <item>クラシック</item>
+        <item>ポップ</item>
+        <item>アイス</item>
+        <item>マジック</item>
     </string-array>
 
     <string-array name="theme_pref_setEntryValues">

@@ -75,23 +75,4 @@ public class ThemeBit implements Theme{
         return R.drawable.dark2;
     }
 
-    /**
-     * This method returns the name of the light team
-     *
-     * @return the name of the light team
-     */
-    @Override
-    public String getLightTeamName() {
-        return "White Magician";
-    }
-
-    /**
-     * This method returns the name of the dark team
-     *
-     * @return the name of the dark team
-     */
-    @Override
-    public String getDarkTeamName() {
-        return "Black Magician";
-    }
 }
